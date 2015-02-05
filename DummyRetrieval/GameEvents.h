@@ -14,7 +14,8 @@ typedef enum MESSAGE_TYPE_ {
 	PLAYER_DEATH,			// The player we are generating music for has died
 	FIRE_WEAPON,			// The player fired off a shot
 	PLAYER_SWITCH_TEAMS,	// The player switched teams
-	PLAYER_JUMP				// The player jumped in-game
+	PLAYER_JUMP,				// The player jumped in-game
+	PLAYER_HURT				// The player was fired at
 } MESSAGE_TYPE;
 
 #define PLAYER_KILL_PROB			0.018
@@ -22,8 +23,9 @@ typedef enum MESSAGE_TYPE_ {
 #define FIRE_WEAPON_PROB			0.3
 #define PLAYER_SWITCH_TEAMS_PROB	0.002
 #define PLAYER_JUMP_PROB			0.01
+#define PLAYER_HURT_PROB			0.155
 
-#define MESSAGE_TYPE_SIZE 5
+#define MESSAGE_TYPE_SIZE 6
 
 // Probabilities used in dummy data provider
 extern std::map<MESSAGE_TYPE, double> MessageTypeProbabilities;

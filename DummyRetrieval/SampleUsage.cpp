@@ -14,6 +14,7 @@ int main()
 	MAP_PROB(FIRE_WEAPON);
 	MAP_PROB(PLAYER_SWITCH_TEAMS);
 	MAP_PROB(PLAYER_JUMP);
+	MAP_PROB(PLAYER_HURT);
 	// Insert extra MAP_PROB calls to assign probabilities as needed
 
 	// Protects access to the GameMessage queue that will be added to asynchronously
