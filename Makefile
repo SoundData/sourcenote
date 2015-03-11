@@ -1,3 +1,5 @@
+PROGRAMS = test tempo
+
 INCLUDE = stk/include
 SRC_PATH = stk/src
 OBJECT_PATH = stk/objects
@@ -15,9 +17,12 @@ LIBRARY = -lpthread -framework CoreAudio -framework CoreFoundation -framework Co
 %.o : $(SRC_PATH)/include/%.cpp $(OBJECT_PATH)/.placeholder
 	$(CC) $(CFLAGS) $(DEFS) -c $(<) -o $(OBJECT_PATH)/$@
 
+all: $(PROGRAMS)
+
 $(OBJECT_PATH)/.placeholder:
 	mkdir -vp $(OBJECT_PATH)
 	touch $(OBJECT_PATH)/.placeholder
 
 test: test.cpp Stk.o SineWave.o RtWvOut.o RtAudio.o Mutex.o
 	$(CC) $(LDFLAGS) $(CFLAGS) $(DEFS) -o test test.cpp $(OBJECT_PATH)/Stk.o $(OBJECT_PATH)/SineWave.o $(OBJECT_PATH)/RtWvOut.o $(OBJECT_PATH)/RtAudio.o $(OBJECT_PATH)/Mutex.o $(LIBRARY)
+	

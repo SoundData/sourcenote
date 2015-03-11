@@ -24,7 +24,7 @@ int main() {
 		exit( 1 );
 	}
 
-	sine.setFrequency( 440.0 );
+	sine.setFrequency( 880.0 );
 
 	// Option 2: Single-sample computations
 	for ( int i=0; i<nFrames; i++ ) {
