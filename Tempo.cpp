@@ -1,4 +1,4 @@
-#include "tempo.h"
+#include "Tempo.h"
 #include <pthread.h>
 #include <unistd.h>
 #include <iostream>
