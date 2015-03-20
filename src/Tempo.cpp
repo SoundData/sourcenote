@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cstdlib>
 
-Tempo::Tempo(int beatsPerMinute) : bpm(beatsPerMinute) {};
+Tempo::Tempo(int beatsPerMinute):bpm(beatsPerMinute) {};
 
 void Tempo::start(){
 	isRunning = true;
@@ -58,13 +58,6 @@ void* Tempo::run(void*temp){
 		beatSubIntervalCount++;
 		usleep(sampleLength);
 	}
+	
 	return NULL;
 }
-
-/*
-int main(){
-	Tempo tempo = Tempo(120);
-	tempo.start();
-	return 0;
-}
-*/
