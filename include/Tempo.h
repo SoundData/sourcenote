@@ -13,4 +13,4 @@ class Tempo{
 		void stop();
 };
 
-#endif 
+#endif

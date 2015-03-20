@@ -12,13 +12,12 @@ void Tempo::start(){
 	isRunning = true;
 
 	pthread_t thread;
-	int threadResult = pthread_create(&thread, NULL, 
-                          &Tempo::run, this);
-     if (threadResult){
-     	std::cout << "Error: Cannot create thread" << threadResult;
-     	exit(-1);
-      }
-     sleep(30);
+	int threadResult = pthread_create(&thread, NULL, &Tempo::run, this);
+	if (threadResult){
+		std::cout << "Error: Cannot create thread" << threadResult;
+		exit(-1);
+	}
+	sleep(30);
 }
 
 void Tempo::stop(){
@@ -68,11 +67,4 @@ void* Tempo::run(void*temp){
 		}
 	}
 	return NULL;
-}
-
-
-int main(){
-	Tempo tempo = Tempo(120);
-	tempo.start();
-	return 0;
 }
