@@ -4,10 +4,13 @@
 class Tone{
 	private:
 		unsigned int startTime;
+		unsigned short int startBeatPosition; 
+		/* Must be an int from 1 to 32. StartBeatPosition is the beat position where the tone will be played in a 2 measure interval.
+		 * Measures are always in 4/4 time with each measure containing 16 beats, making 2 measures contain 32 beats. */
 
 	public:
-		Tone(int startTime);
-		unsigned int getStartTime();
+		Tone(unsigned short int startBeat);
+		unsigned short int getStartBeatPosition();
 };
 
 #endif 

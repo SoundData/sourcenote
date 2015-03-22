@@ -17,7 +17,7 @@ void Tempo::start(){
 		std::cout << "Error: Cannot create thread" << threadResult;
 		exit(-1);
 	}
-	sleep(30);
+	//sleep(30);
 }
 
 void Tempo::stop(){
@@ -30,10 +30,10 @@ void* Tempo::run(void*temp){
 	 * If its equal to 4, we fetch every 16th note in a measure. 1 would be only once per beat. 2 would be twice per beat
 	 * which would be 8th notes */
 	Tempo *tempo = (Tempo*)temp;
-	double sampleLengthDouble = (tempo->bpm/60);	// == beats per second 
-	sampleLengthDouble = 1/sampleLengthDouble;		// == time length in seconds between "samples" (or fetches)
-	sampleLengthDouble *= 1000000; 					// == time length in microseconds between beats (quarter notes)
-	sampleLengthDouble /= beatSubInterval; 			// == time length in microseconds between subBeats
+	double sampleLengthDouble = (tempo->bpm/60);  // beats per second 
+	sampleLengthDouble = 1/sampleLengthDouble; // time length in seconds between "samples" (or fetches)
+	sampleLengthDouble *= 1000000; // time length in microseconds between beats (quarter notes)
+	sampleLengthDouble /= beatSubInterval; // time length in microseconds between subBeats
 	int sampleLength = (int)sampleLengthDouble;
 
 	int beatCount = 1;

@@ -12,13 +12,15 @@ enum WaveForm{
 
 class NoteTone: public Tone{
 	private:
-		unsigned int endTime;
+		unsigned short int endBeatPosition;
+		/* Must be an int from 1 to 32. EndBeatPosition is the beat position where the tone will be played in a 2 measure interval.
+		 * Measures are always in 4/4 time with each measure containing 16 beats, making 2 measures contain 32 beats. */
 		WaveForm waveform;
 		int frequency;
 
 	public:
-		NoteTone(unsigned int startTime, unsigned int endTime, WaveForm waveform, int frequency);
-		unsigned int getEndTime();
+		NoteTone(unsigned short int endBeat, unsigned short int startBeat, WaveForm waveform, int frequency);
+		unsigned short int getEndBeatPosition();
 		WaveForm getWaveform();
 		int getFrequency();
 };
