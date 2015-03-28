@@ -1,6 +1,6 @@
 #include "NoteTone.h"
 
-NoteTone::NoteTone(unsigned short int startBeat, unsigned short int endBeat, WaveForm waveform, int frequency) : Tone(startBeat), waveform(waveform), frequency(frequency) {
+NoteTone::NoteTone(unsigned short int startBeat, unsigned short int endBeat, WaveForm waveform, float frequency) : Tone(startBeat), waveform(waveform), frequency(frequency) {
 	endBeatPosition = (endBeat <= 32 || startBeat >= endBeat) ? endBeat : 0;
 	// Invalid end beat is set to 0 and the tone will not be played
 }
@@ -13,6 +13,6 @@ WaveForm NoteTone::getWaveform(){
 	return waveform;
 }
 
-int NoteTone::getFrequency(){
+float NoteTone::getFrequency(){
 	return frequency;
 }
