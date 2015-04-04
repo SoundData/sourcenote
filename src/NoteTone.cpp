@@ -5,6 +5,8 @@ NoteTone::NoteTone(unsigned short int startBeat, unsigned short int endBeat, Wav
 	// Invalid end beat is set to 0 and the tone will not be played
 }
 
+//NoteTone::NoteTone(){};
+
 unsigned short int NoteTone::getEndBeatPosition(){
 	return endBeatPosition;
 }
