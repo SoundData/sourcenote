@@ -6,3 +6,5 @@
 *.sublime-project
 
 *.sn
+
+*.o
