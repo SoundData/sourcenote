@@ -6,3 +6,7 @@
 *.sublime-project
 
 *.sn
+
+*.o
+
+.placeholder

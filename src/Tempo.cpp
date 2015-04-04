@@ -1,4 +1,5 @@
 #include "Tempo.h"
+#include "Tone.h"
 #include <pthread.h>
 #include <unistd.h>
 #include <iostream>
@@ -13,6 +14,7 @@ void Tempo::start(){
 
 	pthread_t thread;
 	int threadResult = pthread_create(&thread, NULL, &Tempo::run, this);
+	
 	if (threadResult){
 		std::cout << "Error: Cannot create thread" << threadResult;
 		exit(-1);
@@ -29,6 +31,7 @@ void* Tempo::run(void*temp){
 	/* 'beatSubInterval' defines how many times we fetch new tones between every quarter beat.
 	 * If its equal to 4, we fetch every 16th note in a measure. 1 would be only once per beat. 2 would be twice per beat
 	 * which would be 8th notes */
+	
 	Tempo *tempo = (Tempo*)temp;
 	double sampleLengthDouble = (tempo->bpm/60);  // beats per second 
 	sampleLengthDouble = 1/sampleLengthDouble; // time length in seconds between "samples" (or fetches)
@@ -40,11 +43,13 @@ void* Tempo::run(void*temp){
 	/* Similar to written music, beat 1 starts at time 0 and there is no beat 0. */
 	int beatSubIntervalCount = 4;
 	int count = 1;
-
+	
 	auto sampleLengthMicros = std::chrono::microseconds(sampleLength);
 	auto beatZeroTime = std::chrono::high_resolution_clock::now();
 	auto nextBeatTime = beatZeroTime + 1 * sampleLengthMicros;
-
+	
+	
+	
 	while(tempo->isRunning){
 		/* fetch tones */
 		if (std::chrono::high_resolution_clock::now() >= nextBeatTime){

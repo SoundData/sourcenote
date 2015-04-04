@@ -1,4 +1,4 @@
-PROGRAMS = test toolkit
+PROGRAMS = toolkit
 
 INCLUDE = stk/include
 SRC_PATH = stk/src
@@ -31,5 +31,6 @@ test: test.cpp Stk.o SineWave.o RtWvOut.o RtAudio.o Mutex.o
 	$(CC) $(LDFLAGS) $(CFLAGS) $(DEFS) -o test.sn test.cpp $(OBJECT_PATH)/Stk.o $(OBJECT_PATH)/SineWave.o $(OBJECT_PATH)/RtWvOut.o $(OBJECT_PATH)/RtAudio.o $(OBJECT_PATH)/Mutex.o $(LIBRARY)
 
 
-toolkit: Stk.o SineWave.o RtWvOut.o RtAudio.o Mutex.o
-	$(CC) $(LDFLAGS) $(CFLAGS) $(DEFS) -o toolkit.sn main.cpp $(OBJECT_PATH)/Stk.o $(OBJECT_PATH)/SineWave.o $(OBJECT_PATH)/RtWvOut.o $(OBJECT_PATH)/RtAudio.o $(OBJECT_PATH)/Mutex.o $(LIBRARY) $(SN_SRC)/Tempo.cpp $(SN_SRC)/Toolkit.cpp
+toolkit: Stk.o SineWave.o RtWvOut.o RtAudio.o Mutex.o Voicer.o BlitSaw.o Noise.o
+	$(CC) $(LDFLAGS) $(CFLAGS) $(DEFS) -o toolkit.sn main.cpp $(OBJECT_PATH)/Stk.o $(OBJECT_PATH)/SineWave.o $(OBJECT_PATH)/RtWvOut.o $(OBJECT_PATH)/RtAudio.o $(OBJECT_PATH)/Mutex.o $(OBJECT_PATH)/Voicer.o $(OBJECT_PATH)/BlitSaw.o $(OBJECT_PATH)/Noise.o $(LIBRARY) $(SN_SRC)/Toolkit.cpp
+	
