@@ -11,6 +11,11 @@
 #include "SineWave.h"
 #include "BlitSaw.h"
 #include "Noise.h"
+#include "Voicer.h"
+
+// our stuff
+#include "NoteTone.h"
+#include "PercussionTone.h"
 
 class Toolkit {	
 	private:
@@ -24,7 +29,8 @@ class Toolkit {
 		int stopStream(void);
 		void playTone(unsigned int start, int duration, std::string waveform, float freq);
 		static int mainTick(void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames, double streamTime, RtAudioStreamStatus status, void *dataPointer);
-		static stk::SineWave *s;
+		void playNoteTone(NoteTone *t);
+		void playPercussionTone(PercussionTone *t);
 };
 
 #endif

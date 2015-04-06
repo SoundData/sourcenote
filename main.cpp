@@ -30,16 +30,21 @@ int main(void) {
 	
 	Stk::setSampleRate( (float) S_RATE );
 	
-	//NoteTone a(1, 2, kSine, 440);
+	NoteTone *a = new NoteTone(1, 2, kSine, 440.0);
+	PercussionTone *b = new PercussionTone(1, "kick.wav");
 	
 	Toolkit tk = Toolkit();
-	tk.playTone(0, 2, "sine", 440.0);
 	
-	tk.startStream();
+	//
+	// tk.playTone(0, 2, "sine", 440.0);
+	tk.playNoteTone(a);
+	tk.playPercussionTone(b);
 	
-	Stk::sleep(10000);
+	//tk.startStream();
 	
-	tk.stopStream();
+	//Stk::sleep(5000);
+	
+	//tk.stopStream();
 	
 	
 	return 0;

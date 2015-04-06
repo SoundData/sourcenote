@@ -1,13 +1,17 @@
-// main stuff
 #include "Toolkit.h"
-
-#define MAX_CHANNELS 0
+#define MAX_VOICES 5
 
 using std::min;
 using namespace stk;
 
+// ToneData is a helper struct that can be accessed from within the RtAudio tick function call
 struct ToneData {
-	SineWave *s;
+	Voicer voices;
+	unsigned int samplesLeft[MAX_VOICES];
+	bool isPlaying;
+	
+	ToneData()
+		: isPlaying(false) {}
 };
 
 Toolkit::Toolkit() {
@@ -16,8 +20,8 @@ Toolkit::Toolkit() {
 	now = 0;
 	
 	// Initialize the ToneData
-	data->s = new SineWave();
-	data->s->setFrequency( (StkFloat) 440.0 );
+	
+	
 	
 	// Setup the RtAudio parameters
 	RtAudio::StreamParameters parameters;
@@ -56,11 +60,15 @@ int Toolkit::mainTick(void *outputBuffer, void *inputBuffer, unsigned int nBuffe
 	StkFloat *samples = (StkFloat *) outputBuffer;
 	int nTicks = (int) nBufferFrames;
 	
-	for(int i = 0; i < nTicks; i++) {
-		*samples++ = data->s->tick();
+	for(int i = 0; i < nTicks*2; i++) {
+		//samples[nBufferFrames*0 + i]
+		//samples[nBufferFrames*1 + i]
+		//samples[i++] = data->gen->tick();
+		//samples[i++] = samples[i-1];
 	}
 	
-	data->s->getFrequency()
+	//data->freq *= 1.005;
+	//data->gen->setFrequency( data->freq );
 	
 	return 0;
 }
@@ -75,6 +83,11 @@ int Toolkit::stopStream(void) {
 	return 0;
 }
 
-void Toolkit::playTone(unsigned int start, int duration, std::string waveform, float freq) {
-	std::cout << "Playing " << waveform << " tone @ freq " << freq << "Hz.\n";
+void Toolkit::playNoteTone(NoteTone *t) {
+	//std::cout << "Playing " << waveform << " tone @ freq " << freq << "Hz.\n";
+	std::cout << "Playing waveform " << t->getWaveform() << " at frequency " << t->getFrequency() << "\n";
+}
+
+void Toolkit::playPercussionTone(PercussionTone *t) {
+	std::cout << "Playing perc tone '" << t->getFileName() << "'.\n";
 }
