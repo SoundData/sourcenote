@@ -10,14 +10,13 @@ Tempo::Tempo(int beatsPerMinute) : bpm(beatsPerMinute) {};
 
 void Tempo::start(){
 	isRunning = true;
-
 	pthread_t thread;
 	int threadResult = pthread_create(&thread, NULL, &Tempo::run, this);
 	if (threadResult){
 		std::cout << "Error: Cannot create thread" << threadResult;
 		exit(-1);
 	}
-	sleep(30);
+	//sleep(30);
 }
 
 void Tempo::stop(){
@@ -105,7 +104,7 @@ std::vector<NoteTone> Tempo::getNoteTonesForBeatPosition(unsigned short int beat
 		}
 		notesForBeat.push_back(track.tones[beatPosition]);
 		track.repeatCount--;
-		if(track.repeatCount == -1){
+		if(track.repeatCount == -1 && !track.continous){
 			noteTracks.erase(noteTracks.begin() + i);
 		}
 	}
@@ -118,7 +117,7 @@ std::vector<PercussionTone> Tempo::getPercussionTonesForBeatPosition(unsigned sh
 		PercussionTrack track = percussionTracks[i];
 		percussionsForBeat.push_back(track.tones[beatPosition]);
 		track.repeatCount--;
-		if(track.repeatCount == -1){
+		if(track.repeatCount == -1 && !track.continous){
 			percussionTracks.erase(percussionTracks.begin() + i);
 		}
 	}

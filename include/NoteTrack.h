@@ -3,7 +3,7 @@
 
 #include <unordered_map>
 #include <vector>
-#include <NoteTone.h>
+#include "NoteTone.h"
 
 /* A Track contains a single Tone or collection of Tones.
  * It keeps Tones, that are played on the same channel, grouped together.
@@ -16,7 +16,8 @@ class NoteTrack{
 	public:
 		NoteTrack(std::vector<NoteTone> toneList);
 		std::unordered_map<unsigned short int, NoteTone> tones;
-		unsigned int repeatCount;
+		bool continous; // does it repeat "forever" ?
+		unsigned int repeatCount; // if not continous, how many 2 measure intervals it will repeat for (0 means it will play only once and never repeat)
 };
 
 #endif 

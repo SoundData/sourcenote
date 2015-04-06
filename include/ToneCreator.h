@@ -3,6 +3,9 @@
 
 #include "Tone.h"
 #include "NoteTone.h"
+#include "PercussionTone.h"
+#include "NoteTrack.h"
+#include "PercussionTrack.h"
 #include <unordered_map>
 #include <vector>
 #include <iostream>
@@ -10,6 +13,21 @@
 /* A ToneCreator object should be instantiated with a vector of GameMessages 
  * containing the intial parameters of the game (level, charcter, etc.).
  * Initial parameters are necessary to create a relevant, initial melody. */
+
+ enum PercussionToneType{
+	kClap = 0,
+	kSnare,
+	kKick,
+	kChat,
+	kCowbell,
+	kCymbal,
+	kHconga,
+	kHatom,
+	kLconga,
+	kLtom,
+	kMconga,
+	kOhat
+};
 
 class ToneCreator{
 	private:
@@ -27,7 +45,6 @@ class ToneCreator{
 
 	public:
 		//Tempo(std::vector<GameMessage> initialParameters);
-		//Tone* makeTonesForEvent(GameMessage event);
 		ToneCreator();
 		NoteTone makeToneWithNote(std::string note);
 		NoteTone makeRandomNoteInKeyAndOctave(std::string key, unsigned short int octave);
@@ -35,8 +52,12 @@ class ToneCreator{
 		 * Examples of key: "C", "A", "D" */
 		NoteTone makeRandomNoteInTimeFrameAndKeyAndOctave(unsigned short int startTime, unsigned short int endTime, std::string key, unsigned short int octave);
 		/* StartTime and endTime should be a 16th note beat within a 2 measure interval, so between 1 and 32. */
-		std::vector<NoteTone> makeRandomMelodyNotesInKeyAndOctave(std::string key, unsigned short int octave);
-		std::vector<NoteTone> makeRandomMelodyNotesInRandomKeyAndRandomOctave();
+		NoteTrack makeRandomMelodyNotesInKeyAndOctave(std::string key, unsigned short int octave);
+		NoteTrack makeRandomMelodyNotesInRandomKeyAndRandomOctave();
+		PercussionTrack makePercussionTrackWithTypeAndBeats(PercussionToneType type, std::vector<unsigned short int> beats);
+		/* Assuming Tempo's samples new tones 4 times for every quarter note, beats should contain numbers ranging from 1 to 32. */
+		PercussionTrack makeRandomBeatWithPercussionType(PercussionToneType type);
+		/* Creates a steady beat of percussion tones. It randomly chooses between making half notes, quarter notes, or 8th notes (only one type is chosen). */
 };
 
 #endif
