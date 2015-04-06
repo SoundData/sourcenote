@@ -10,6 +10,7 @@ class Tone{
 
 	public:
 		Tone(unsigned short int startBeat);
+		Tone(){}; //Required to access a Tone in a vector of Tones. My research suggests its a Clang specific issue.
 		unsigned short int getStartBeatPosition();
 };
 
